@@ -1,0 +1,96 @@
+{%include 'admin_header.html'%}
+
+{%if data['upd']%}
+<form method="post">
+    <br>
+    <h1>Add Subcategory</h1>
+    <table>
+        <tr> 
+            <th>subcategory name</th>
+            <td><input type="text" name="subcategory_name" value="{{data['upd'][0]['subcategory_name']}}"></td>
+        </tr>
+        <tr>
+            <th>category</th>
+            <td><select name="category_id" id="">
+                {% for i in data['drop']%}
+                <option value="{{i['category_id']}}">{{i['category_name']}}</option>
+                {%endfor%}
+            </select></td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="update" value="update"></td>
+        </tr>
+    </table>
+</form>
+{%elif data['del']%}
+<form method="post">
+    <br>
+    <h1>Add Subcategory</h1>
+    <table>
+        <tr> 
+            <th>subcategory name</th>
+            <td><input type="text" name="subcategory_name" value="{{data['del'][0]['subcategory_name']}}"></td>
+        </tr>
+        <tr>
+            <th>category</th>
+            <td><select name="category_id" id="">
+                {% for i in data['drop']%}
+                <option value="{{i['category_id']}}">{{i['category_name']}}</option>
+                {%endfor%}
+            </select></td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="delete" value="delete"></td>
+        </tr>
+    </table>
+</form>
+
+
+
+{%else%}
+<form method="post">
+    <br>
+    <h1>Add Subcategory</h1>
+    <table>
+        <tr> 
+            <th>subcategory name</th>
+            <td><input type="text" name="subcategory_name" value=""></td>
+        </tr>
+        <tr>
+            <th>category</th>
+            <td><select name="category_id" id="">
+                {% for i in data['drop']%}
+                <option value="{{i['category_id']}}">{{i['category_name']}}</option>
+                {%endfor%}
+            </select></td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="submit" value="submit"></td>
+        </tr>
+    </table>
+{%endif%}
+
+</form>
+    <table border="1">
+        <tr>
+            <th>Sl No</th>
+            <th>subcategory</th>
+            <th>category</th>
+            <th>Update</th>
+            <th>delete</th>
+        </tr>
+        {% for i in data['view']%}
+        <tr>
+            <td>{{loop.index}}</td>
+            <td>{{i['subcategory_name']}}</td>
+            <td>{{i['category_name']}}</td>
+            <td><a href="?action=update&id={{i['subcategory_id']}}">update</a></td>
+            <td><a href="?action=delete&id={{i['subcategory_id']}}">delete</a></td>
+        </tr>
+        {%endfor%}  
+        <br> 
+       
+    </table>
+   
+
+{%include 'footer.html'%}

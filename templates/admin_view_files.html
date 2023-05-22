@@ -1,0 +1,19 @@
+{%include 'admin_header.html'%}
+    <h1>View File</h1>
+    <form method="post">
+        <table>
+            <tr>
+                <th>User Document </th>  
+            </tr>
+            {% for i in data['view']%}
+            <tr>
+                    <td><img src="{{i['file']}}" alt="" height="100" width="100"></td>
+                    <td><a href="?action=accept&id={{i['login_id']}}">accept</a></td>
+                    <td><a href="?action=reject&id={{i['login_id']}}">reject</a></td>
+            </tr>
+            {%endfor%}
+        </table>
+        
+    </form>
+    
+{%include 'footer.html'%}
